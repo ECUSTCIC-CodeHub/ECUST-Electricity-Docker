@@ -12,7 +12,7 @@ const BASE_PARAMS = "sysid=1&areaid=3&buildid=20";
 const headers = {
   "User-Agent": "Mozilla/5.0 (Linux; U; Android 4.1.2; zh-cn; Chitanda/Akari) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30 MicroMessenger/6.0.0.58_r884092.501 NetType/WIFI",
 };
-const regex = /(\d+(\.\d+)?)度/;
+const regex = /(-?\d+(\.\d+)?)度/;
 
 // --- 核心：抓取配置的房间 ---
 export async function scrapeTargetRoom() {
