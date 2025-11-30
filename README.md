@@ -4,7 +4,7 @@ ECUST Electricity 是一个现代化、高颜值的宿舍电量监控面板。
 
 它可以帮助你实时追踪特定房间的电力消耗情况，提供详细的图表分析、充值记录检测以及剩余可用天数估算。项目采用前后端分离架构（SERN Stack），并针对 Docker 部署进行了深度优化。
 
-![统计面板](assets/Dashboard-black.png)
+![统计面板](assets/Dashboard.png)
 
 ✨ 功能特性
 
