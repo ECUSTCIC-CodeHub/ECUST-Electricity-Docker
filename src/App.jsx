@@ -61,7 +61,15 @@ const StatCard = ({ title, value, subtext, icon: Icon, delay, highlight, compact
 // --- Main App ---
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(true);
+  // 改动 1: 初始化时检测系统主题偏好
+  const [darkMode, setDarkMode] = useState(() => {
+    // 如果浏览器支持 matchMedia，则检查系统是否是深色模式
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    return true; // 默认回退到深色
+  });
+
   const [loading, setLoading] = useState(true);
   const [rawData, setRawData] = useState([]);
   
@@ -469,13 +477,14 @@ export default function App() {
                         labelStyle={{ color: darkMode ? '#ccc' : '#666', marginBottom: '8px' }}
                       />
                        <Area 
-                          type="monotone" 
-                          dataKey="val" 
-                          stroke="#3b82f6" 
+                          type="monotone"
+                          dataKey="val"
+                          name="剩余电量"
+                          stroke="#3b82f6"
                           strokeWidth={2}
                           fill="url(#gradient-room)"
                           connectNulls={true}
-                          isAnimationActive={true} 
+                          isAnimationActive={true}
                           animationDuration={1500}
                           activeDot={{ r: 6, strokeWidth: 0 }}
                        />
