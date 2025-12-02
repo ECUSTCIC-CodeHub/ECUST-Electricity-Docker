@@ -432,7 +432,7 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="w-full h-[65vh] min-h-[500px]">
+              <div className="w-full flex-1 min-h-[500px]">
                 {loading ? (
                   <div className="h-full w-full flex items-center justify-center text-zinc-400">
                     Loading data...
