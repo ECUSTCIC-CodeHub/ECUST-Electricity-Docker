@@ -61,14 +61,33 @@ const StatCard = ({ title, value, subtext, icon: Icon, delay, highlight, compact
 // --- Main App ---
 
 export default function App() {
-  // 改动 1: 初始化时检测系统主题偏好
   const [darkMode, setDarkMode] = useState(() => {
-    // 如果浏览器支持 matchMedia，则检查系统是否是深色模式
     if (typeof window !== 'undefined' && window.matchMedia) {
       return window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
-    return true; // 默认回退到深色
+    return true; 
   });
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e) => setDarkMode(e.matches);
+    
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handleChange);
+    } else {
+      mediaQuery.addListener(handleChange);
+    }
+
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener('change', handleChange);
+      } else {
+        mediaQuery.removeListener(handleChange);
+      }
+    };
+  }, []);
 
   const [loading, setLoading] = useState(true);
   const [rawData, setRawData] = useState([]);
