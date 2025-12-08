@@ -73,7 +73,7 @@ docker run -d \
   -e PART_ID=校区 \ #（如：-e PART_ID=奉贤）（奉贤|徐汇）
   -e BUILD_ID=楼号 \ #（如：-e BUILD_ID=18 代表18号楼）
   -e ROOM_ID=宿舍号 \ #（如：-e ROOM_ID=101）（必填）
-  -e ROOM_URL="（可选）如果上面的规则出现数据错误可以通过这条，强制替换成获取的正确URL链接（获取方式最下面有）" \
+  -e ROOM_URL="（可选）如果出现数据错误，可以使用这条强制替换成获取的正确URL链接（获取方式最下面有）" \
   #（如：-e ROOM_URL="https://yktyd.ecust.edu.cn/epay/wxpage/wanxiao/eleresult?sysid=1&roomid=101&areaid=2&buildid=1"）
   nakiripolaris/nakiri-electricity:latest
 ```
