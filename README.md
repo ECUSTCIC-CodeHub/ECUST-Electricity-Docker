@@ -64,7 +64,7 @@ docker pull nakiripolaris/nakiri-electricity:latest
 使用 docker run 启动服务。你需要通过 -e 参数传入房间配置。
 
 #### 完整配置：
-**你需要修改4个环境变量，替换成你自己的信息**
+**你需要修改3个环境变量，替换成你自己的信息**
 ```
 docker run -d \
   --name nakiri-electricity \
