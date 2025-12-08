@@ -70,16 +70,53 @@ docker run -d \
   --name nakiri-electricity \
   -p 这里替换成你的本机端口:8080 \ #（如：-p 8080:8080）（必填）
   -v 文件路径:/app/data \ #（如：-v $(pwd)/data:/app/data \）（用来存放数据库文件）（必填）
-  -e PART_ID=校区编号 \ #（如：-e PART_ID=0）（0：代表奉贤校区 | 1：代表徐汇校区）
-  -e BUILD_ID=楼号 \ #（如：-e BUILD_ID=1）
-  -e ROOM_ID=房间号 \ #（如：-e ROOM_ID=101）（必填）
-  -e ROOM_URL="替换成获取的URL链接（获取方式最下面有）" \ #（如：-e ROOM_URL="https://yktyd.ecust.edu.cn/epay/wxpage/wanxiao/eleresult?sysid=1&roomid=101&areaid=2&buildid=1"）（必填）
+  -e PART_ID=校区 \ #（如：-e PART_ID=奉贤）（奉贤|徐汇）
+  -e BUILD_ID=楼号 \ #（如：-e BUILD_ID=18 代表18号楼）
+  -e ROOM_ID=宿舍号 \ #（如：-e ROOM_ID=101）（必填）
+  -e ROOM_URL="（可选）如果上面的规则出现数据错误可以通过这条，强制替换成获取的正确URL链接（获取方式最下面有）" \
+  #（如：-e ROOM_URL="https://yktyd.ecust.edu.cn/epay/wxpage/wanxiao/eleresult?sysid=1&roomid=101&areaid=2&buildid=1"）
   nakiripolaris/nakiri-electricity:latest
 ```
 ##### 访问地址: http://你机器的IP:你设置的端口
 
 #### 示例配置：
-奉贤校区，1号楼1层，101号宿舍：
+##### 示例配置1：
+奉贤校区，5号楼，202：
+```
+docker run -d \
+  -p 8080:8080 \
+  -v $(pwd)/data:/app/data \
+  -e PART_ID="奉贤" \
+  -e BUILD_ID="5" \
+  -e ROOM_ID="202" \
+  --name elec-monitor \
+  nakiripolaris/nakiri-electricity:latest
+```
+##### 示例配置2：
+徐汇校区，13号楼，405：
+```
+docker run -d \
+  -p 8080:8080 \
+  -v $(pwd)/data:/app/data \
+  -e PART_ID="徐汇" \
+  -e BUILD_ID="13" \
+  -e ROOM_ID="405" \
+  --name elec-monitor \
+  nakiripolaris/nakiri-electricity:latest
+```
+##### 示例配置3：
+特殊楼栋 (徐汇南区4A)：
+```
+docker run -d \
+  -p 8080:8080 \
+  -v $(pwd)/data:/app/data \
+  -e PART_ID="徐汇" \
+  -e BUILD_ID="南区4A" \
+  -e ROOM_ID="101" \
+  nakiripolaris/nakiri-electricity:latest
+```
+##### 示例配置4（旧版，不推荐）：
+奉贤校区，1号楼，101：
 ```
 docker run -d \
   --name nakiri-electricity \
